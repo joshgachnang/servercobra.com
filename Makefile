@@ -78,8 +78,11 @@ dropbox_upload: publish
 ftp_upload: publish
 	lftp ftp://$(FTP_USER)@$(FTP_HOST) -e "mirror -R $(OUTPUTDIR) $(FTP_TARGET_DIR) ; quit"
 
-s3_upload: publish
+s3_upload_del: publish
 	s3cmd sync $(OUTPUTDIR)/ s3://$(S3_BUCKET) --acl-public --delete-removed
+
+s3_upload: publish
+	s3cmd sync $(OUTPUTDIR)/ s3://$(S3_BUCKET) --acl-public
 
 github: publish
 	ghp-import $(OUTPUTDIR)

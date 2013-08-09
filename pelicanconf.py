@@ -32,3 +32,10 @@ GOOGLE_ANALYTICS = 'UA-9740779-3'
 TWITTER_USERNAME = 'servercobra'
 THEME = 'subtle'
 MY_S3_BUCKET = 'www.servercobra.com'
+TEMPLATE_PAGES = {
+    # 'pages/about.html': 'output/about.html',
+    'pages/resume.html': 'resume.html',
+    # 'pages/contact.html': 'output/contact.html',
+    # 'pages/portfolio.html': 'output/portfolio.html'
+}
+DISPLAY_PAGES_ON_MENU = True

@@ -45,21 +45,17 @@ the default user, ubuntu, simply type "sudo su".
 
     fdisk /dev/sdf
 	--
-
     n (new)
 	p (primary partition)
 	1 (1st partition)
 	1 (1st cylinder)
 	enter (last cylinder)
 	w (write partition table to disk)
-
     --
-
     #Install the tool to format using the XFS filesystem
 	apt-get -y -q install xfsprogs
 	#Format the new partition
 	mkfs.xfs /dev/sdf1
-
     #Mount the newly formatted partition
 	mkdir /ebs
 	mount /dev/sdf1 /ebs
@@ -107,7 +103,6 @@ has.
 
 	nano /etc/nginx/nginx.conf
 	--
-
     # Change "worker\_processes NUM;" to:
 	worker\_processes 1;
 	# Make sure these lines are uncommented:
@@ -118,19 +113,15 @@ has.
 	gzip\_buffers 16 8k;
 	gzip\_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
 	--
-
     # Now we are going to migrate these files to the EBS volume
 	/etc/init.d/nginx stop
 	mkdir /ebs/log /ebs/etc
 	mv /var/log/nginx /ebs/log/
 	mv /etc/nginx /ebs/etc/
-
     mkdir /etc/nginx
 	mount --bind /ebs/etc/nginx /etc/nginx -o noatime
-
     mkdir /var/log/nginx
 	mount --bind /ebs/log/nginx /var/log/nginx -o noatime
-
     /etc/init.d/nginx start
 
 
